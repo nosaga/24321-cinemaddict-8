@@ -1,7 +1,7 @@
 # Личный проект «Киноман» [![Build status][travis-image]][travis-url]
 
 * Студент: [Violetta Ashirova](https://up.htmlacademy.ru/ecmascript/8/user/24321).
-* Наставник: `Неизвестно`.
+* Наставник: `Андрей Фидельман`.
 
 ---
 
