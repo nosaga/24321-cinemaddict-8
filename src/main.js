@@ -33,7 +33,7 @@ const filtersAll = document.querySelectorAll(`.main-navigation`)[0];
 
 const addClass = function (node) {
   if (selectedFilter) {
-    selectedFilter.classList.remove (`main-navigation__item--active`);
+    selectedFilter.classList.remove(`main-navigation__item--active`);
   }
   selectedFilter = node;
   selectedFilter.classList.add(`main-navigation__item--active`);
