@@ -38,7 +38,7 @@ const addClass = function (node) {
   selectedFilter = node;
   selectedFilter.classList.add(`main-navigation__item--active`);
   renderCards(7, 2, 2);
-}
+};
 
 
 filtersAll.addEventListener(`click`, function (evt) {
