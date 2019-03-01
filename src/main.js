@@ -9,13 +9,10 @@ const filmTopRated = document.querySelectorAll(`.films-list__container`)[1];
 const filmCommented = document.querySelectorAll(`.films-list__container`)[2];
 const filters = [`All`, `Watchlist`, `History`, `Favorites`, `Stats`];
 
-const renderFilters = function () {
-  for (let i = 0; i < filters.length; i++) {
-    mainNavigation.insertAdjacentHTML(`beforeend`, makeFilter(filters[i], getRandomNum(0, 15)));
-  }
-};
+filters.forEach((filter) => {
+  mainNavigation.insertAdjacentHTML(`beforeend`, makeFilter(filter, getRandomNum(0, 15)));
 
-renderFilters();
+});
 
 const renderCards = function (elem, num, caption) {
   for (let i = 0; i < num; i++) {
@@ -47,5 +44,6 @@ filtersAll.addEventListener(`click`, function (evt) {
   if (target.classList !== `main-navigation__item`) {
     addClass(target);
   }
+  filmList.innerHTML = ``;
 });
 
