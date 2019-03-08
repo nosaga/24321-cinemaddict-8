@@ -43,4 +43,4 @@ const title = [
   `Rick and Morty`
 ];
 
-export const cardTypes = [`film-card`, `film-card film-card--no-controls`]
+export const cardTypes = [`film-card`, `film-card film-card--no-controls`];
