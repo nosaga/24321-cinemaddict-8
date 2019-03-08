@@ -22,9 +22,9 @@ const renderCards = (elem, num) => {
   }
 };
 
-renderCards(filmList, 7, `moonrise`);
-renderCards(filmTopRated, 2, `blue-blazes`);
-renderCards(filmCommented, 2, `accused`);
+renderCards(filmList, 7);
+renderCards(filmTopRated, 2);
+renderCards(filmCommented, 2);
 
 let selectedFilter;
 const filtersAll = document.querySelectorAll(`.main-navigation`)[0];

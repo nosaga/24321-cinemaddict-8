@@ -9,9 +9,15 @@ export const getCard = () => ({
     `Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.`,
     `Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat.`,
     `Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.`
-  ]
-})
+  ],
+  year: new Date(getRandomNum(1936, 2019), 1),
+  hours: [0, 1, 2, 3, 4],
+  minutes: [15, 20, 25, 30, 45, 50],
+  rating: getRandomNum(0, 10),
+  genre: [`Comedy`, `Thriller`, `Drama`, `Horror`, `Action`, `Sci-Fi`, `Detective`, `Fantasy`]
+});
 
+const getRandomNum = (min, max) => ((Math.random() * (max - min)) + min).toFixed(1);
 
 const posters = [
   `accused`, `blackmail`, `blue-blazes`, `fuga-da-new-york`, `moonrise`, `three-friends`
@@ -35,4 +41,6 @@ const title = [
   `First Man`,
   `Whiplash`,
   `Rick and Morty`
-]
+];
+
+export const cardTypes = [`film-card`, `film-card film-card--no-controls`]
