@@ -1,15 +1,19 @@
-export default (caption) => `<article 
-    class="film-card">
-    <h3 class="film-card__title">Incredibles 2</h3>
-    <p class="film-card__rating">9.8</p>
+import {getRandomNum} from "./main";
+import {cardTypes} from "./get-card";
+
+export default (card) => `<article 
+    class="${cardTypes[getRandomNum(0, 2)]}">
+    <h3 class="film-card__title">${card.title}</h3>
+    <p class="film-card__rating">${card.rating}</p>
     <p class="film-card__info">
-      <span class="film-card__year">2018</span>
-      <span class="film-card__duration">1h&nbsp;13m</span>
-      <span class="film-card__genre">Comedy</span>
+      <span class="film-card__year">${card.year.getFullYear()}</span>
+      <span class="film-card__duration">${card.hours[getRandomNum(0, 5)]}h&nbsp;${card.minutes[getRandomNum(0, 6)]}m</span>
+      <span class="film-card__genre">${card.genre[getRandomNum(0, 8)]}</span>
     </p>
-    <img src="./images/posters/${caption}.jpg" alt="" class="film-card__poster">
-    <p class="film-card__description">A priests Romania and confront a malevolent force in the form of a demonic nun.</p>
-    <button class="film-card__comments">13 comments</button>
+    <img src="${card.poster}.jpg" alt="" class="film-card__poster">
+    <p class="film-card__description">${[...card.description].map((desc) => `${desc}`).splice(getRandomNum(0, 7), 2).join(``)}</p>
+    
+    <button class="film-card__comments">${getRandomNum(0, 30)} comments</button>
 
     <form class="film-card__controls">
       <button class="film-card__controls-item button film-card__controls-item--add-to-watchlist">Add to watchlist</button>
