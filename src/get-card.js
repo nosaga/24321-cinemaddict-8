@@ -14,7 +14,8 @@ export const getCard = () => ({
   hours: [0, 1, 2, 3, 4],
   minutes: [15, 20, 25, 30, 45, 50],
   rating: getRandomNum(0, 10),
-  genre: [`Comedy`, `Thriller`, `Drama`, `Horror`, `Action`, `Sci-Fi`, `Detective`, `Fantasy`]
+  genre: [`Comedy`, `Thriller`, `Drama`, `Horror`, `Action`, `Sci-Fi`, `Detective`, `Fantasy`],
+  cardTypes: [`film-card`, `film-card film-card--no-controls`][Math.floor(Math.random() * 2)]
 });
 
 const getRandomNum = (min, max) => ((Math.random() * (max - min)) + min).toFixed(1);
@@ -43,4 +44,13 @@ const title = [
   `Rick and Morty`
 ];
 
-export const cardTypes = [`film-card`, `film-card film-card--no-controls`];
+
+const getCards = () => {
+  const cards = [];
+  for (let i = 0; i < title.length; i++) {
+    cards.push(getCard());
+  }
+  return cards;
+}
+
+export const cards = getCards();

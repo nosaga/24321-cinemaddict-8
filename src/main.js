@@ -1,6 +1,7 @@
 import makeFilter from './make-filter.js';
-import makeCard from './make-card';
-import {getCard} from './get-card';
+import {cards} from './get-card';
+import {Card} from "./card";
+import {CardEdit} from "./card-edit";
 
 export const getRandomNum = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
@@ -16,15 +17,34 @@ filters.forEach((filter) => {
 
 });
 
-const renderCards = (elem, num) => {
-  for (let i = 0; i < num; i++) {
-    elem.insertAdjacentHTML(`beforeend`, makeCard(getCard()));
-  }
+const renderCards = () => {
+  cards.forEach((item) => {
+    const cardComponent = new Card(item);
+    const editCardComponent = new CardEdit(item);
+    filmList.appendChild(cardComponent.render());
+    filmTopRated.appendChild(cardComponent.render());
+    filmCommented.appendChild(cardComponent.render());
+
+    cardComponent.onEdit = () => {
+      editCardComponent.render();
+      filmList.replaceChild(editCardComponent.element, cardComponent.element);
+      cardComponent.unrender();
+    };
+
+    /*editCardComponent.onSubmit = () => {
+      cardComponent.render();
+      filmList.replaceChild(cardComponent.element, editCardComponent.element);
+      editCardComponent.unrender();
+    };*/
+
+    editCardComponent.unEdit = () => {
+      cardComponent.render();
+      filmList.replaceChild(cardComponent.element, editCardComponent.element);
+      editCardComponent.unrender();
+    };
+  });
 };
 
-renderCards(filmList, 7);
-renderCards(filmTopRated, 2);
-renderCards(filmCommented, 2);
 
 let selectedFilter;
 const filtersAll = document.querySelectorAll(`.main-navigation`)[0];
@@ -44,10 +64,8 @@ filtersAll.addEventListener(`click`, function (evt) {
     addClass(target);
     filmsAll.forEach((film) => {
       film.innerHTML = ``;
+      renderCards();
     });
-    renderCards(filmList, 7, `moonrise`);
-    renderCards(filmTopRated, 2, `blue-blazes`);
-    renderCards(filmCommented, 2, `accused`);
   }
 });
 
