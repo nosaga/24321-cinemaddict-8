@@ -10,17 +10,8 @@ export class CardEdit {
     this._minutes = data.minutes;
     this._rating = data.rating;
     this._genre = data.genre;
-    this._cardTypes = data.cardTypes;
     this._element = null;
-    this._onSubmit = null;
     this._unEdit = null;
-  }
-
-  _onSubmitButtonClick(evt) {
-    evt.preventDefault();
-    if (typeof this._onSubmit === `function`) {
-      this._onSubmit();
-    }
   }
 
   _unEditCardClick() {
@@ -33,20 +24,20 @@ export class CardEdit {
     this._unEdit = fn;
   }
 
-  set onSubmit(fn) {
-    this._onSubmit = fn;
+  get element() {
+    return this._element;
   }
 
-
   get template() {
-    return `<section class="film-details">
+    return `
+<section class="film-details">
   <form class="film-details__inner" action="" method="get">
     <div class="film-details__close">
       <button class="film-details__close-btn" type="button">close</button>
     </div>
     <div class="film-details__info-wrap">
       <div class="film-details__poster">
-        <img class="film-details__poster-img" src="images/posters/blackmail.jpg" alt="incredables-2">
+        <img class="film-details__poster-img" src="${this._poster}.jpg" alt="${this._title}">
 
         <p class="film-details__age">18+</p>
       </div>
@@ -54,12 +45,12 @@ export class CardEdit {
       <div class="film-details__info">
         <div class="film-details__info-head">
           <div class="film-details__title-wrap">
-            <h3 class="film-details__title">Incredibles 2</h3>
+            <h3 class="film-details__title">${this._title}</h3>
             <p class="film-details__title-original">Original: Невероятная семейка</p>
           </div>
 
           <div class="film-details__rating">
-            <p class="film-details__total-rating">5.2</p>
+            <p class="film-details__total-rating">${this._rating}</p>
             <p class="film-details__user-rating">Your rate 8</p>
           </div>
         </div>
@@ -79,11 +70,11 @@ export class CardEdit {
           </tr>
           <tr class="film-details__row">
             <td class="film-details__term">Release Date</td>
-            <td class="film-details__cell">15 June 2018 (USA)</td>
+            <td class="film-details__cell">${this._year} (USA)</td>
           </tr>
           <tr class="film-details__row">
             <td class="film-details__term">Runtime</td>
-            <td class="film-details__cell">118 min</td>
+            <td class="film-details__cell">${this._hours}  ${this._minutes}</td>
           </tr>
           <tr class="film-details__row">
             <td class="film-details__term">Country</td>
@@ -92,15 +83,14 @@ export class CardEdit {
           <tr class="film-details__row">
             <td class="film-details__term">Genres</td>
             <td class="film-details__cell">
-              <span class="film-details__genre">Animation</span>
-              <span class="film-details__genre">Action</span>
-              <span class="film-details__genre">Adventure</span></td>
+              <span class="film-details__genre">${this._genre}</span>
+              <span class="film-details__genre">${this._genre}</span>
+              <span class="film-details__genre">${this._genre}</span></td>
           </tr>
         </table>
 
         <p class="film-details__film-description">
-          The Incredibles hero family takes on a new mission, which involves a change in family roles:
-          Bob Parr (Mr Incredible) must manage the house while his wife Helen (Elastigirl) goes out to save the world.
+          ${this._description}
         </p>
       </div>
     </div>
@@ -207,17 +197,13 @@ export class CardEdit {
   }
 
   bind() {
-    this._element.querySelector(`.film-details__inner`)
-      .addEventListener(`submit`, this._onSubmitButtonClick.bind(this));
     this._element.querySelector(`.film-details__close-btn`)
       .addEventListener(`click`, this._unEditCardClick.bind(this));
   }
 
   unbind() {
-    this._element.querySelector(`.card__form`)
-      .removeEventListener(`click`, this._onSubmitButtonClick);
     this._element.querySelector(`.film-details__close-btn`)
-      .removeEventListener(`click`, this._unEditCardClick.bind(this));
+      .removeEventListener(`click`, this._unEditCardClick);
   }
 
   render() {

@@ -17,6 +17,12 @@ filters.forEach((filter) => {
 
 });
 
+const clearCards = () => {
+  filmList.innerHTML = ``;
+  filmTopRated.innerHTML = ``;
+  filmCommented.innerHTML = ``;
+}
+
 const renderCards = () => {
   cards.forEach((item) => {
     const cardComponent = new Card(item);
@@ -24,27 +30,19 @@ const renderCards = () => {
     filmList.appendChild(cardComponent.render());
     filmTopRated.appendChild(cardComponent.render());
     filmCommented.appendChild(cardComponent.render());
-
     cardComponent.onEdit = () => {
       editCardComponent.render();
-      filmList.replaceChild(editCardComponent.element, cardComponent.element);
+      document.body.appendChild(editCardComponent.element);
       cardComponent.unrender();
     };
-
-    /*editCardComponent.onSubmit = () => {
-      cardComponent.render();
-      filmList.replaceChild(cardComponent.element, editCardComponent.element);
-      editCardComponent.unrender();
-    };*/
-
     editCardComponent.unEdit = () => {
-      cardComponent.render();
-      filmList.replaceChild(cardComponent.element, editCardComponent.element);
+      document.body.removeChild(editCardComponent.element);
       editCardComponent.unrender();
     };
   });
 };
 
+renderCards();
 
 let selectedFilter;
 const filtersAll = document.querySelectorAll(`.main-navigation`)[0];
@@ -62,10 +60,9 @@ filtersAll.addEventListener(`click`, function (evt) {
 
   if (target.classList !== `main-navigation__item`) {
     addClass(target);
-    filmsAll.forEach((film) => {
-      film.innerHTML = ``;
-      renderCards();
-    });
+    clearCards();
+    renderCards();
   }
 });
+
 

@@ -31,7 +31,8 @@ export class Card {
   }
 
   get template() {
-    return `<article 
+    return `
+<article 
     class="${this._cardTypes}">
     <h3 class="film-card__title">${this._title}</h3>
     <p class="film-card__rating">${this._rating}</p>

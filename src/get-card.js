@@ -47,7 +47,7 @@ const title = [
 
 const getCards = () => {
   const cards = [];
-  for (let i = 0; i < title.length; i++) {
+  for (let i = 0; i < Math.floor(getRandomNum(3, 7)); i++) {
     cards.push(getCard());
   }
   return cards;
