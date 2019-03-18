@@ -6,7 +6,6 @@ import {CardEdit} from "./card-edit";
 export const getRandomNum = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
 const mainNavigation = document.querySelector(`.main-navigation`);
-const filmsAll = document.querySelectorAll(`.films-list__container`);
 const filmList = document.querySelectorAll(`.films-list__container`)[0];
 const filmTopRated = document.querySelectorAll(`.films-list__container`)[1];
 const filmCommented = document.querySelectorAll(`.films-list__container`)[2];
@@ -21,7 +20,7 @@ const clearCards = () => {
   filmList.innerHTML = ``;
   filmTopRated.innerHTML = ``;
   filmCommented.innerHTML = ``;
-}
+};
 
 const renderCards = () => {
   cards.forEach((item) => {
