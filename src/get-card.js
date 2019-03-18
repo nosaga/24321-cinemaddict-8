@@ -51,6 +51,6 @@ const getCards = () => {
     cards.push(getCard());
   }
   return cards;
-}
+};
 
 export const cards = getCards();
