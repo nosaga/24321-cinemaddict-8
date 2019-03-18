@@ -16,4 +16,4 @@ build/
 
 
 # Файлы сборки
-public/
+public/bundle.js
