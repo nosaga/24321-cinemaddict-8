@@ -1,6 +1,6 @@
 import {Component} from "./component";
 
-export class CardEdit extends Component{
+export class CardEdit extends Component {
   constructor(data) {
     super();
     this._title = data.title;
