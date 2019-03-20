@@ -1,8 +1,9 @@
 import {getRandomNum} from "./main";
-import {createElement} from "./create-element";
+import {Component} from "./component";
 
-export class Card {
+export class Card extends Component {
   constructor(data) {
+    super();
     this._title = data.title;
     this._poster = data.poster;
     this._description = data.description;
@@ -20,10 +21,6 @@ export class Card {
     if (typeof this._onEdit === `function`) {
       this._onEdit();
     }
-  }
-
-  get element() {
-    return this._element;
   }
 
   set onEdit(fn) {
@@ -64,14 +61,4 @@ export class Card {
       .removeEventListener(`click`, this._onEditButtonClick);
   }
 
-  render() {
-    this._element = createElement(this.template);
-    this.bind();
-    return this._element;
-  }
-
-  unrender() {
-    this.unbind();
-    this._element = null;
-  }
 }
