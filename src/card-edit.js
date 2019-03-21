@@ -1,7 +1,8 @@
-import {createElement} from "./create-element";
+import Component from "./component";
 
-export class CardEdit {
+export default class CardEdit extends Component {
   constructor(data) {
+    super();
     this._title = data.title;
     this._poster = data.poster;
     this._description = data.description;
@@ -22,10 +23,6 @@ export class CardEdit {
 
   set unEdit(fn) {
     this._unEdit = fn;
-  }
-
-  get element() {
-    return this._element;
   }
 
   get template() {
@@ -205,16 +202,4 @@ export class CardEdit {
     this._element.querySelector(`.film-details__close-btn`)
       .removeEventListener(`click`, this._unEditCardClick);
   }
-
-  render() {
-    this._element = createElement(this.template);
-    this.bind();
-    return this._element;
-  }
-
-  unrender() {
-    this.unbind();
-    this._element = null;
-  }
-
 }
