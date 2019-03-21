@@ -1,7 +1,7 @@
 import {getRandomNum} from "./main";
-import {Component} from "./component";
+import Component from "./component";
 
-export class Card extends Component {
+export default class Card extends Component {
   constructor(data) {
     super();
     this._title = data.title;

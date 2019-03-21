@@ -1,7 +1,7 @@
 import makeFilter from './make-filter.js';
 import {cards} from './get-card';
-import {Card} from "./card";
-import {CardEdit} from "./card-edit";
+import Card from "./card";
+import CardEdit from "./card-edit";
 
 export const getRandomNum = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
