@@ -34,7 +34,13 @@ const renderCards = () => {
       document.body.appendChild(editCardComponent.element);
       cardComponent.unrender();
     };
-    editCardComponent.unEdit = () => {
+    editCardComponent.unEdit = (newObject) => {
+      item.commentEmoji = newObject.commentEmoji;
+      item.comment = newObject.comment;
+      item.rating = newObject.rating;
+      cardComponent.update(item);
+      cardComponent.render();
+      editCardComponent.update(item);
       document.body.removeChild(editCardComponent.element);
       editCardComponent.unrender();
     };
