@@ -1,8 +1,7 @@
 import Component from "./component";
 import {isActive} from "./get-card";
 import {CommentEmoji} from "./get-card";
-const moment = require(`moment`);
-moment().format();
+import moment from "moment";
 
 
 export default class CardEdit extends Component {
@@ -21,6 +20,7 @@ export default class CardEdit extends Component {
     this._genre = data.genre;
     this._element = null;
     this._unEdit = null;
+    this._unEditCardClick = this._unEditCardClick.bind(this);
     this._onChangeComment = this._onChangeComment.bind(this);
     this._onChangeRate = this._onChangeRate.bind(this);
   }
@@ -45,10 +45,10 @@ export default class CardEdit extends Component {
     return entry;
   }
 
-  _unEditCardClick() {
+  _unEditCardClick(evt) {
+    evt.preventDefault();
     const formData = new FormData(this._element.querySelector(`.film-details__inner`));
     const newData = this._processForm(formData);
-    console.log(newData);
     if (typeof this._unEdit === `function`) {
       this._unEdit(newData);
     }
@@ -303,20 +303,20 @@ export default class CardEdit extends Component {
 
   bind() {
     this._element.querySelector(`.film-details__close-btn`)
-      .addEventListener(`click`, this._unEditCardClick.bind(this));
+      .addEventListener(`click`, this._unEditCardClick);
     this.element.querySelector(`.film-details__comment`)
-      .addEventListener(`click`, this._onChangeComment.bind(this));
+      .addEventListener(`click`, this._onChangeComment);
     this.element.querySelector(`.film-details__user-rating-score`)
-      .addEventListener(`click`, this._onChangeRate.bind(this));
+      .addEventListener(`click`, this._onChangeRate);
   }
 
   unbind() {
     this._element.querySelector(`.film-details__close-btn`)
       .removeEventListener(`click`, this._unEditCardClick);
     this.element.querySelector(`.film-details__comment`)
-      .removeEventListener(`click`, this._onChangeComment.bind(this));
+      .removeEventListener(`click`, this._onChangeComment);
     this.element.querySelector(`.film-details__user-rating-score`)
-      .removeEventListener(`click`, this._onChangeRate.bind(this));
+      .removeEventListener(`click`, this._onChangeRate);
   }
 
   update(data) {

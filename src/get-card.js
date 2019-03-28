@@ -16,7 +16,7 @@ export const getCard = () => ({
   dateFromNow: [`2019-01-20`, `2019-03-24`, `2019-02-25`, `2019-01-20`, `2019-03-00`][Math.floor(Math.random() * 5)],
   rating: rating[Math.floor(Math.random() * 8)],
   comment: comment[Math.floor(Math.random() * 6)],
-  commentEmoji: [`sleeping`, `neutral-face`, `emoji-grinning`][Math.floor(Math.random() * 3)],
+  commentEmoji: Object.keys(CommentEmoji)[Math.floor(Math.random() * 3)],
   genre: [`Comedy`, `Thriller`, `Drama`, `Horror`, `Action`, `Sci-Fi`, `Detective`, `Fantasy`],
   cardTypes: [`film-card`, `film-card film-card--no-controls`][Math.floor(Math.random() * 2)]
 });

@@ -2,6 +2,8 @@ import makeFilter from './make-filter.js';
 import {cards} from './get-card';
 import Card from "./card";
 import CardEdit from "./card-edit";
+moment().format();
+import moment from "moment";
 
 export const getRandomNum = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
@@ -43,6 +45,8 @@ const renderCards = () => {
       editCardComponent.update(item);
       document.body.removeChild(editCardComponent.element);
       editCardComponent.unrender();
+      clearCards();
+      renderCards();
     };
   });
 };
