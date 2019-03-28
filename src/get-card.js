@@ -27,7 +27,7 @@ export const CommentEmoji = {
   [`emoji-grinning`]: `😀`
 };
 
-export const comment = [`nice`, `very boring`, `not fot family watch`, `too many fights`, `funny`, `encouraging`]
+export const comment = [`nice`, `very boring`, `not fot family watch`, `too many fights`, `funny`, `encouraging`];
 export const rating = [1, 2, 3, 4, 5, 6, 7, 8];
 const getRandomNum = (min, max) => ((Math.random() * (max - min)) + min).toFixed(1);
 
@@ -54,7 +54,6 @@ const title = [
   `Whiplash`,
   `Rick and Morty`
 ];
-
 
 const getCards = () => {
   const cards = [];
