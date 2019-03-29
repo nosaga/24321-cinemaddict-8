@@ -1,7 +1,6 @@
 import {getRandomNum} from "./main";
 import Component from "./component";
-const moment = require(`moment`);
-moment().format();
+import moment from "moment";
 
 export default class Card extends Component {
   constructor(data) {
@@ -37,7 +36,7 @@ export default class Card extends Component {
     <h3 class="film-card__title">${this._title}</h3>
     <p class="film-card__rating">${this._rating}</p>
     <p class="film-card__info">
-      <span class="film-card__year">${moment(this._year)} </span>
+      <span class="film-card__year">${moment(this._year).format(`LL`)} </span>
       <span class="film-card__duration">${moment.duration(this._hours, `hours`).humanize()}, ${moment.duration(this._minutes, `minutes`).humanize()}</span>
       <span class="film-card__genre">${this._genre[getRandomNum(0, 8)]}</span>
     </p>

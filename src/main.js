@@ -2,8 +2,8 @@ import makeFilter from './make-filter.js';
 import {cards} from './get-card';
 import Card from "./card";
 import CardEdit from "./card-edit";
-moment().format();
 import moment from "moment";
+moment().format();
 
 export const getRandomNum = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
