@@ -11,13 +11,24 @@ export const getCard = () => ({
     `Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.`
   ],
   year: new Date(getRandomNum(1936, 2019), 1),
-  hours: [0, 1, 2, 3, 4],
-  minutes: [15, 20, 25, 30, 45, 50],
-  rating: getRandomNum(0, 10),
+  hours: [1, 2, 3][Math.floor(Math.random() * 3)],
+  minutes: [15, 20, 25, 30, 45][Math.floor(Math.random() * 5)],
+  dateFromNow: [`2019-01-20`, `2019-03-24`, `2019-02-25`, `2019-01-20`, `2019-03-00`][Math.floor(Math.random() * 5)],
+  rating: rating[Math.floor(Math.random() * 8)],
+  comment: comment[Math.floor(Math.random() * 6)],
+  commentEmoji: Object.keys(CommentEmoji)[Math.floor(Math.random() * 3)],
   genre: [`Comedy`, `Thriller`, `Drama`, `Horror`, `Action`, `Sci-Fi`, `Detective`, `Fantasy`],
   cardTypes: [`film-card`, `film-card film-card--no-controls`][Math.floor(Math.random() * 2)]
 });
 
+export const CommentEmoji = {
+  sleeping: `😴`,
+  [`neutral-face`]: `😐`,
+  [`emoji-grinning`]: `😀`
+};
+
+export const comment = [`nice`, `very boring`, `not fot family watch`, `too many fights`, `funny`, `encouraging`];
+export const rating = [1, 2, 3, 4, 5, 6, 7, 8];
 const getRandomNum = (min, max) => ((Math.random() * (max - min)) + min).toFixed(1);
 
 const posters = [
@@ -44,7 +55,6 @@ const title = [
   `Rick and Morty`
 ];
 
-
 const getCards = () => {
   const cards = [];
   for (let i = 0; i < Math.floor(getRandomNum(3, 7)); i++) {
@@ -53,4 +63,5 @@ const getCards = () => {
   return cards;
 };
 
+export const isActive = (active) => active ? `checked` : ``;
 export const cards = getCards();
