@@ -1,6 +1,7 @@
 export const getCard = () => ({
-  title: title[Math.floor(Math.random() * 15)],
+  name: title[Math.floor(Math.random() * 15)],
   poster: `/images/posters/${posters[Math.floor(Math.random() * 5)]}`,
+  iconFav: `/images/icon-favorite.svg`,
   description: [
     `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
     `Cras aliquet varius magna, non porta ligula feugiat eget. Fusce tristique felis at fermentum pharetra.`,
@@ -17,8 +18,10 @@ export const getCard = () => ({
   rating: rating[Math.floor(Math.random() * 8)],
   comment: comment[Math.floor(Math.random() * 6)],
   commentEmoji: Object.keys(CommentEmoji)[Math.floor(Math.random() * 3)],
-  genre: [`Comedy`, `Thriller`, `Drama`, `Horror`, `Action`, `Sci-Fi`, `Detective`, `Fantasy`],
-  cardTypes: [`film-card`, `film-card film-card--no-controls`][Math.floor(Math.random() * 2)]
+  genre: [`Comedy`, `Thriller`, `Drama`, `Horror`, `Action`, `Sci-Fi`, `Detective`, `Fantasy`][Math.floor(Math.random() * 8)],
+  isWatchlist: boolValues[Math.floor(Math.random() * 2)],
+  isWatched: boolValues[Math.floor(Math.random() * 2)],
+  isFavorite: boolValues[Math.floor(Math.random() * 2)]
 });
 
 export const CommentEmoji = {
@@ -27,6 +30,7 @@ export const CommentEmoji = {
   [`emoji-grinning`]: `😀`
 };
 
+const boolValues = [true, false];
 export const comment = [`nice`, `very boring`, `not fot family watch`, `too many fights`, `funny`, `encouraging`];
 export const rating = [1, 2, 3, 4, 5, 6, 7, 8];
 const getRandomNum = (min, max) => ((Math.random() * (max - min)) + min).toFixed(1);
@@ -55,9 +59,9 @@ const title = [
   `Rick and Morty`
 ];
 
-const getCards = () => {
+export const getCards = () => {
   const cards = [];
-  for (let i = 0; i < Math.floor(getRandomNum(3, 7)); i++) {
+  for (let i = 0; i < Math.floor(getRandomNum(10, 15)); i++) {
     cards.push(getCard());
   }
   return cards;

@@ -7,7 +7,7 @@ import moment from "moment";
 export default class CardEdit extends Component {
   constructor(data) {
     super();
-    this._title = data.title;
+    this._title = data.name;
     this._poster = data.poster;
     this._description = data.description;
     this._year = data.year;
@@ -18,6 +18,10 @@ export default class CardEdit extends Component {
     this._comment = data.comment;
     this._commentEmoji = data.commentEmoji;
     this._genre = data.genre;
+    this._isWatchlist = data.isWatchlist;
+    this._isWatched = data.isWatched;
+    this._isFavorite = data.isFavorite;
+
     this._element = null;
     this._unEdit = null;
     this._unEditCardClick = this._unEditCardClick.bind(this);
@@ -27,7 +31,10 @@ export default class CardEdit extends Component {
 
   _processForm(formData) {
     const entry = {
-      title: ``,
+      isWatchlist: this._isWatchlist,
+      isWatched: this._isWatched,
+      isFavorite: this._isFavorite,
+      name: ``,
       color: ``,
       commentEmoji: ``,
       comment: ``,
@@ -143,13 +150,13 @@ export default class CardEdit extends Component {
     </div>
 
     <section class="film-details__controls">
-      <input type="checkbox" class="film-details__control-input visually-hidden" id="watchlist" name="watchlist">
+      <input type="checkbox" class="film-details__control-input visually-hidden" id="watchlist" name="watchlist" ${isActive(this._isWatchlist)}>
       <label for="watchlist" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
 
-      <input type="checkbox" class="film-details__control-input visually-hidden" id="watched" name="watched" checked>
+      <input type="checkbox" class="film-details__control-input visually-hidden" id="watched" name="watched" ${isActive(this._isWatched)}>
       <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
 
-      <input type="checkbox" class="film-details__control-input visually-hidden" id="favorite" name="favorite">
+      <input type="checkbox" class="film-details__control-input visually-hidden" id="favorite" name="favorite" ${isActive(this._isFavorite)}>
       <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add to favorites</label>
     </section>
 
@@ -184,6 +191,7 @@ export default class CardEdit extends Component {
             type="radio" 
             id="emoji-sleeping" 
             value="sleeping"
+            ${this._commentEmoji}
             ${isActive(this._commentEmoji)}>
             <label class="film-details__emoji-label" for="emoji-sleeping">😴</label>
 
@@ -320,6 +328,9 @@ export default class CardEdit extends Component {
   }
 
   update(data) {
+    this._isWatchlist = data.isWatchlist === `on`;
+    this._isWatched = data.isWatched;
+    this._isFavorite = data.isFavorite;
     this._rating = data.rating;
     this._comment = data.comment;
     this._commentEmoji = data.commentEmoji;
@@ -328,6 +339,15 @@ export default class CardEdit extends Component {
 
   static createMapper(target) {
     return {
+      watchlist: (value) => {
+        target.isWatchlist = value;
+      },
+      watched: (value) => {
+        target.isWatched = value;
+      },
+      favorite: (value) => {
+        target.isFavorite = value;
+      },
       comment: (value) => {
         target.comment = value;
       },
