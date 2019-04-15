@@ -32,7 +32,7 @@ const showStats = () => {
   statsContainer.classList.remove(`visually-hidden`);
   const watchedFilms = getWatchedFilms(initailFilms);
   getStatsTotals(watchedFilms);
-}
+};
 
 chartSelector.addEventListener(`click`, showStats);
 
@@ -40,15 +40,15 @@ const initailFilms = getCards();
 
 const filterFilms = (filmsAll, filterName) => {
   switch (filterName) {
-    case `All`:
+    case `all`:
       return filmsAll;
-    case `Watchlist`:
+    case `watchlist`:
       return filmsAll.filter((it) => it.isWatchlist === true);
 
-    case `History`:
+    case `history`:
       return filmsAll.filter((it) => it.isWatched === true);
 
-    case `Favorites`:
+    case `favorites`:
       return filmsAll.filter((it) => it.isFavorite === true);
 
     default:
@@ -81,12 +81,17 @@ const renderFilms = (filmsAll) => {
     };
     cardComponent.onAddToWatchList = () => {
       film.isWatchlist = !film.isWatchlist;
+      cardComponent.update(film);
+
     };
     cardComponent.onMarkAsWatched = () => {
       film.isWatched = !film.isWatched;
+      cardComponent.update(film);
     };
     cardComponent.onMarkAsFavorite = () => {
       film.isFavorite = !film.isFavorite;
+      cardComponent.update(film);
+
     };
     editCardComponent.unEdit = (newObject) => {
       film.commentEmoji = newObject.commentEmoji;
@@ -109,13 +114,14 @@ const renderFilms = (filmsAll) => {
 renderFilters();
 renderFilms(initailFilms);
 
-const filtersAll = document.querySelectorAll(`.main-navigation`)[0];
+const filtersAll = document.querySelector(`.main-navigation`);
 
-filtersAll.onclick = (evt) => {
-  const filterName = evt.target.innerHTML.split(` `)[0];
-  console.log(filterName);
-  const filteredFilms = filterFilms(initailFilms, filterName);
-  renderFilms(filteredFilms);
-};
+filtersAll.addEventListener(`click`, (evt) => {
+  if (evt.target.tagName === `A`) {
+    const filterName = evt.target.dataset.filterId;
+    const filteredFilms = filterFilms(initailFilms, filterName);
+    renderFilms(filteredFilms);
+  }
+});
 
 

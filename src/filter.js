@@ -22,7 +22,7 @@ export default class Filters extends Component {
   get template() {
     return `
       <a href="${this._name.toLowerCase()}"
-      class="main-navigation__item main-navigation__item">
+      class="main-navigation__item main-navigation__item" data-filter-id="${this._name.toLowerCase()}">
         ${this._name}
         <span class="main-navigation__item-count">${this._number}</span>
     </a>`.trim();
